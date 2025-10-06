@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 <body>
-    <iframe src="https://pokemonshowdown.com" width="100%" height="600" frameborder="0" allowfullscreen></iframe>
+<script>
+// Only load after 3 seconds or user click
+setTimeout(() => {
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://parsec.app';
+    iframe.style.width = '100%';
+    iframe.style.height = '100vh';
+    document.body.appendChild(iframe);
+}, 3000);
+</script>
 </body>
 </html>
