@@ -1,15 +1,24 @@
-<!DOCTYPE html>
-<html>
-<body>
 <script>
-// Only load after 3 seconds or user click
-setTimeout(() => {
-    const iframe = document.createElement('iframe');
-    iframe.src = 'https://pokemonshowdown.com';
-    iframe.style.width = '100%';
-    iframe.style.height = '100vh';
-    document.body.appendChild(iframe);
-}, 3000);
+// Use free CORS proxies as intermediate layers
+const proxyServers = [
+    'https://cors-anywhere.herokuapp.com/',
+    'https://api.allorigins.win/raw?url=',
+    'https://crossorigin.me/'
+];
+
+async function loadThroughProxies() {
+    let target = 'https://parsec.app';
+    
+    // Chain through multiple proxies
+    for (let proxy of proxyServers) {
+        try {
+            const response = await fetch(proxy + target);
+            const html = await response.text();
+            document.write(html);
+            break;
+        } catch (e) {
+            continue; // Try next proxy
+        }
+    }
+}
 </script>
-</body>
-</html>
