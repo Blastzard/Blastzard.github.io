@@ -1,0 +1,19 @@
+name: Launch Chromium
+on: [workflow_dispatch]
+
+jobs:
+  launch-chromium:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Install Chromium
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser xvfb
+        
+    - name: Start Chromium with Parsec
+      run: |
+        xvfb-run --auto-servernum chromium-browser --no-sandbox --disable-web-security --user-data-dir=/tmp/chromium-profile https://parsec.app &
+        sleep 30  # Keep it running for 30 seconds
